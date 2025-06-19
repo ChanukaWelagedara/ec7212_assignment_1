@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Tool</title>
+    <!-- Simple CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        /* Form styling */
+        .form-item {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input[type="file"], input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        /* Error message */
+        .error {
+            color: red;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #ffeeee;
+            border-left: 4px solid red;
+        }
+        /* Hide levels input initially */
+        #intensity-options {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Processing Tool</h1>
+    
+    <!-- Error messages -->
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <!-- Simple form -->
+    <form action="/process" method="post" enctype="multipart/form-data">
+        <!-- Image upload -->
+        <div class="form-item">
+            <label for="file">Select an image:</label>
+            <input type="file" id="file" name="file" accept=".png, .jpg, .jpeg, .gif, .bmp" required>
+        </div>
+        
+        <!-- Operation selection -->
+        <div class="form-item">
+            <label for="operation">Choose operation:</label>
+            <select id="operation" name="operation" onchange="showOptions()" required>
+                <option value="" disabled selected>Select an operation</option>
+                <option value="intensity">1. Reduce Intensity Levels</option>
+                <option value="spatial">2. Spatial Averaging (3x3, 10x10, 20x20)</option>
+                <option value="rotate">3. Rotate Image (45° and 90°)</option>
+                <option value="block">4. Block Averaging (3x3, 5x5, 7x7)</option>
+            </select>
+        </div>
+        
+        <!-- Intensity levels options - shown only for intensity reduction -->
+        <div class="form-item" id="intensity-options">
+            <label for="levels">Number of intensity levels:</label>
+            <select id="levels" name="levels">
+                <option value="2">2 levels</option>
+                <option value="4">4 levels</option>
+                <option value="8">8 levels</option>
+                <option value="16">16 levels</option>
+                <option value="32">32 levels</option>
+                <option value="64">64 levels</option>
+                <option value="128">128 levels</option>
+            </select>
+        </div>
+        
+        <!-- Submit button -->
+        <div class="form-item">
+            <button type="submit">Process Image</button>
+        </div>
+    </form>
+    
+    <!-- Simple JavaScript -->
+    <script>
+        function showOptions() {
+            var operation = document.getElementById('operation').value;
+            var intensityOptions = document.getElementById('intensity-options');
+            
+            // Only show intensity options for the intensity operation
+            intensityOptions.style.display = (operation === 'intensity') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
+</html>

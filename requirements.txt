@@ -1,0 +1,6 @@
+# Core libraries for image processing
+numpy
+opencv-python
+
+# Web application framework
+Flask
