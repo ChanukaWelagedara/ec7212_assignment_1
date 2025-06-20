@@ -1,0 +1,11 @@
+
+# Virtual environment
+venv/
+env/
+ENV/
+# Uploaded and generated images
+static/outputs/*.png
+static/outputs/*.jpg
+static/outputs/*.jpeg
+static/outputs/*.gif
+static/outputs/*.bmp
