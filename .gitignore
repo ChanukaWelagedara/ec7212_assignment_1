@@ -1,21 +1,21 @@
 
 # Virtual environment
-venv/
-env/
-ENV/
+P/ython_Pro/venv/
+Python_Pro/env/
+Python_Pro/ENV/
 # Uploaded and generated images
-static/outputs/*.png
-static/outputs/*.jpg
-static/outputs/*.jpeg
-static/outputs/*.gif
-static/outputs/*.bmp
+Python_Pro/static/outputs/*.png
+Python_Pro/static/outputs/*.jpg
+Python_Pro/static/outputs/*.jpeg
+Python_Pro/static/outputs/*.gif
+Python_Pro/static/outputs/*.bmp
 
 # Uploaded images in uploads directory
-uploads/*.png
-uploads/*.jpg
-uploads/*.jpeg
-uploads/*.gif
-uploads/*.bmp
+Python_Pro/uploads/*.png
+Python_Pro/uploads/*.jpg
+Python_Pro/uploads/*.jpeg
+Python_Pro/uploads/*.gif
+Python_Pro/uploads/*.bmp
 
 
 
