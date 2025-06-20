@@ -3,8 +3,6 @@ import cv2
 import time
 from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
-
-# Import the image processing modules
 from intensity_reducer import process_image as reduce_intensity
 from spatial_averager import process_image as spatial_average
 from image_rotator import process_image as rotate_image
@@ -12,21 +10,13 @@ from block_averager import process_image as block_average
 
 # Create Flask app
 app = Flask(__name__)
-
-# Setup folders for uploads and results
 UPLOAD_FOLDER = 'uploads'
-OUTPUT_FOLDER = 'static/outputs'  # Use forward slashes for compatibility
-
-# Create folders if they don't exist
+OUTPUT_FOLDER = 'static/outputs' 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
-
-# Configure app
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024  # 8MB limit
-
-# Allowed image file types
+app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp'}
 
 def allowed_file(filename):
@@ -61,7 +51,6 @@ def process():
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(file_path)
     
-    # Get selected operation
     operation = request.form.get('operation')
     results = []
     
@@ -115,16 +104,11 @@ def process():
                     'image': output_path
                 })
         
-        # Save original for comparison
         original_img = cv2.imread(file_path)
         original_path = save_output_image(original_img, "original")
-        
-        # Show results
         return render_template('results.html', original=original_path, results=results)
         
     except Exception as e:
         return render_template('index.html', error=f'Error: {str(e)}')
-
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)

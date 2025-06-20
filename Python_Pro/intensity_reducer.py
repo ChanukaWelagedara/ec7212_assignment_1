@@ -1,14 +1,6 @@
 import numpy as np
 import cv2
 
-# def reduce_intensity_levels(image, levels):
-#     if not (levels & (levels-1) == 0) and levels != 0:
-#         raise ValueError("Number of levels must be a power of 2")
-#     reduced_img = image.copy()
-#     factor = 256 // levels
-#     reduced_img = (reduced_img // factor) * factor
-#     return reduced_img
-
 def reduce_intensity_levels(image, levels):
     # Convert to grayscale if not already
     if len(image.shape) == 3:

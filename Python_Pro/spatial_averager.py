@@ -1,11 +1,6 @@
 
 import numpy as np
 import cv2
-
-# def spatial_average(image, kernel_size):
-#     kernel = np.ones((kernel_size, kernel_size), np.float32) / (kernel_size * kernel_size)
-#     averaged_img = cv2.filter2D(image, -1, kernel)
-#     return averaged_img
 def spatial_average(image, kernel_size):
     kernel = np.ones((kernel_size, kernel_size), np.float32) / (kernel_size * kernel_size)
     averaged = cv2.filter2D(image, -1, kernel, borderType=cv2.BORDER_REPLICATE)
