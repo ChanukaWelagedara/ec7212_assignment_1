@@ -9,3 +9,12 @@ static/outputs/*.jpg
 static/outputs/*.jpeg
 static/outputs/*.gif
 static/outputs/*.bmp
+
+uploads/*png
+uploads/*jpg
+uploads/*jpeg
+uploads/*gif
+uploads/*bmp
+
+
+
