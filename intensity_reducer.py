@@ -1,30 +1,35 @@
 import numpy as np
 import cv2
 
+# def reduce_intensity_levels(image, levels):
+#     if not (levels & (levels-1) == 0) and levels != 0:
+#         raise ValueError("Number of levels must be a power of 2")
+#     reduced_img = image.copy()
+#     factor = 256 // levels
+#     reduced_img = (reduced_img // factor) * factor
+#     return reduced_img
+
 def reduce_intensity_levels(image, levels):
-    # Check if levels is a power of 2
-    if not (levels & (levels-1) == 0) and levels != 0:
-        raise ValueError("Number of levels must be a power of 2")
-    # Make a copy of the image
-    reduced_img = image.copy()
-    # Calculate factor to divide by
-    factor = 256 // levels
-    # Reduce intensity levels
-    reduced_img = (reduced_img // factor) * factor
-    return reduced_img
+    # Convert to grayscale if not already
+    if len(image.shape) == 3:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    else:
+        gray = image.copy()
+
+    factor = 256 / levels
+    reduced = np.floor(gray / factor)
+    reduced = np.uint8(reduced * factor)
+    return reduced
+
 
 def process_image(image_path, levels):
-    # Read the image
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
         return None, "Failed to load image"
     try:
-        # Convert levels to integer
         levels = int(levels)
-        # Check if levels is a power of 2
         if not (levels & (levels-1) == 0) and levels != 0:
             return None, "Number of levels must be a power of 2 (2, 4, 8, 16, 32, 64, 128)"
-        # Process the image
         result = reduce_intensity_levels(img, levels)
         return result, None
     except Exception as e:

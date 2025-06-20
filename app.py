@@ -30,31 +30,22 @@ app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024  # 8MB limit
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp'}
 
 def allowed_file(filename):
-    """Check if file has an allowed extension"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def save_output_image(image, name):
-    """Save processed image and return its path for display"""
-    # Add timestamp to prevent cache issues
     timestamp = int(time.time())
     filename = f"{name}_{timestamp}.png"
-    
-    # Save the image
     output_path = os.path.join(app.config['OUTPUT_FOLDER'], filename)
     cv2.imwrite(output_path, image)
-    
-    # Return web-friendly path
     return f"outputs/{filename}"
 
 @app.route('/')
 def index():
-    """Home page with upload form"""
     return render_template('index.html')
 
 @app.route('/process', methods=['POST'])
 def process():
-    """Process the uploaded image"""
-    # Validate file upload
+  
     if 'file' not in request.files:
         return render_template('index.html', error='No file was uploaded')
     
@@ -64,9 +55,8 @@ def process():
     
     if not allowed_file(file.filename):
         return render_template('index.html', 
-                              error=f'Unsupported file type. Please use: {", ".join(ALLOWED_EXTENSIONS)}')
+                            error=f'Unsupported file type. Please use: {", ".join(ALLOWED_EXTENSIONS)}')
     
-    # Save the uploaded file
     filename = secure_filename(file.filename)
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(file_path)
