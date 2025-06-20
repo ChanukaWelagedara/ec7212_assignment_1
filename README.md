@@ -17,7 +17,7 @@ This repositort demonstrates the application of fundamental image processing ope
 - Image files:
  ## How to Use
 
-1. Open the `assignment1.ipynb` notebook in Jupyter or VS Code
+1. Open the `assignment1_4276.ipynb` notebook in Jupyter or VS Code
 2. Update the image path in the notebook to point to one of the provided images
 3. Run the cells to see the effects of various image processing operations
 4. Use the interactive widgets to experiment with different parameters
