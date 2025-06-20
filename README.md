@@ -1,10 +1,10 @@
 # Computer Vision and Image Processing - Assignment 1
 
-This repository contains the implementation of various image processing techniques as part of the EC7212 Computer Vision and Image Processing course assignment.
+This repository consist with the implementation of various image processing techniques.
 
 ## Overview
 
-The assignment demonstrates the application of fundamental image processing operations:
+This repositort demonstrates the application of fundamental image processing operations:
 
 1. **Intensity Level Reduction**: Reducing the number of intensity levels in grayscale images from 256 to lower powers of 2
 2. **Spatial Averaging**: Applying average filtering with different kernel sizes (3×3, 10×10, and 20×20)
@@ -13,7 +13,7 @@ The assignment demonstrates the application of fundamental image processing oper
 
 ## Contents
 
-- `assignment1.ipynb`: Jupyter notebook containing all implementations
+- `assignment1_4276.ipynb`: Jupyter notebook containing all implementations
 - Image files:
  ## How to Use
 
@@ -32,4 +32,4 @@ The assignment demonstrates the application of fundamental image processing oper
 
 ## Results
 
-The notebook generates visual comparisons between original images and their processed versions, allowing for easy analysis of each technique's effects on image quality and appearance.
+The notebook generates visual comparisons between original images and their processed versions.
